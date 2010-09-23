@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.dharma">
+	<namespace>PrivateMessages</namespace>
+
+  	<entity name="PMMessage" table="private_message" local-service="true" remote-service="false">
+
+	    <!-- PK field -->
+	    <column name="messageId" type="long" primary="true" id-type="increment" />
+
+	    <!-- Other fields -->
+	    <column name="subject" type="String" />
+	    <column name="body" type="String" />
+	    <column name="parentMessageId" type="long" />
+		<column name="ownerId" type="long" />
+		<column name="ownerName" type="String" />
+		<column name="postedDate" type="Date"/>
+		<column name="recepients" type="String" />
+		
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="postedDate" />
+	    </order>    
+
+	    <!-- Finder methods -->
+		<finder name="OwnerId" return-type="Collection">
+	    	<finder-column name="ownerId" />
+	    </finder>
+	    <finder name="ParentMessageId" return-type="Collection">
+	      	<finder-column name="parentMessageId" />
+	    </finder>
+
+  </entity>
+
+  <entity name="PMDeletedMessage" table="deleted_message" local-service="true" remote-service="false">
+
+	    <!-- PK field -->
+	    <column name="deletedMessageId" type="long" primary="true" id-type="increment" />
+
+	    <!-- Other fields -->
+	    <column name="messageId" type="long" />
+		<column name="ownerId" type="long" />
+		<column name="deletedDate" type="Date"/>
+
+		<!-- Order -->
+		<order by="desc">
+	      	<order-column name="deletedDate" />
+	    </order>
+
+	    <!-- Finder methods -->
+		<finder name="OwnerId" return-type="Collection">
+	    	<finder-column name="ownerId" />
+	    </finder>
+	    <finder name="MessageId" return-type="Collection">
+	    	<finder-column name="messageId" />
+	    </finder>
+
+  </entity>
+  
+  <entity name="PMReadMessage" table="read_message" local-service="true" remote-service="false">
+
+	    <!-- PK field -->
+	    <column name="readMessageId" type="long" primary="true" id-type="increment" />
+
+	    <!-- Other fields -->
+	    <column name="messageId" type="long" />
+		<column name="readDate" type="Date"/>
+		
+		<!-- Order -->
+		<order by="desc">
+	      	<order-column name="readDate" />
+	    </order>
+
+	    <!-- Finder methods -->
+	    <finder name="MessageId" return-type="Collection">
+	    	<finder-column name="messageId" />
+	    </finder>
+
+  </entity>
+  
+  <entity name="PMBlockedUser" table="blocked_user" local-service="true" remote-service="false">
+
+	    <!-- PK field -->
+	    <column name="blockedUserId" type="long" primary="true" id-type="increment" />
+
+	    <!-- Other fields -->
+	    <column name="ownerId" type="long" />
+	    <column name="userId" type="long" />
+		<column name="blockedDate" type="Date"/>
+
+		<!-- Order -->
+		<order by="desc">
+			<order-column name="blockedDate" />
+	    </order>
+
+	    <!-- Finder methods -->
+		<finder name="OwnerAndUser" return-type="Collection">
+	    	<finder-column name="ownerId" />
+	    	<finder-column name="userId" />
+	    </finder>
+	    <finder name="Owner" return-type="Collection">
+	    	<finder-column name="ownerId" />
+	    </finder>
+
+  </entity>
+
+</service-builder>

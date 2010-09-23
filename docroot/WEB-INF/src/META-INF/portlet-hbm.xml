@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.dharma.model.PMMessage" />
+	<import class="com.dharma.model.PMDeletedMessage" />
+	<import class="com.dharma.model.PMReadMessage" />
+	<import class="com.dharma.model.PMBlockedUser" />
+	<class name="com.dharma.model.impl.PMMessageImpl" table="private_message">
+		<cache usage="read-write" />
+		<id name="messageId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="subject" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="body" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="parentMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ownerName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="postedDate" type="org.hibernate.type.TimestampType" />
+		<property name="recepients" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.dharma.model.impl.PMDeletedMessageImpl" table="deleted_message">
+		<cache usage="read-write" />
+		<id name="deletedMessageId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="messageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="deletedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.dharma.model.impl.PMReadMessageImpl" table="read_message">
+		<cache usage="read-write" />
+		<id name="readMessageId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="messageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="readDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.dharma.model.impl.PMBlockedUserImpl" table="blocked_user">
+		<cache usage="read-write" />
+		<id name="blockedUserId" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="ownerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="blockedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+</hibernate-mapping>

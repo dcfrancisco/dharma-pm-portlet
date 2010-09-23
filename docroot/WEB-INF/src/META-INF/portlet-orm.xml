@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.dharma.model.impl.PMMessageModelImpl">
+		<attributes>
+			<id name="messageId" />
+			<basic name="subject" />
+			<basic name="body" />
+			<basic name="parentMessageId" />
+			<basic name="ownerId" />
+			<basic name="ownerName" />
+			<basic name="postedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="recepients" />
+			<transient name="primaryKey" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dharma.model.impl.PMDeletedMessageModelImpl">
+		<attributes>
+			<id name="deletedMessageId" />
+			<basic name="messageId" />
+			<basic name="ownerId" />
+			<basic name="deletedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dharma.model.impl.PMReadMessageModelImpl">
+		<attributes>
+			<id name="readMessageId" />
+			<basic name="messageId" />
+			<basic name="readDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="primaryKey" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.dharma.model.impl.PMBlockedUserModelImpl">
+		<attributes>
+			<id name="blockedUserId" />
+			<basic name="ownerId" />
+			<basic name="userId" />
+			<basic name="blockedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="blockedUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.dharma.model.impl.PMMessageImpl" name="PMMessage">
+		<table name="private_message" />
+		<attributes />
+	</entity>
+	<entity class="com.dharma.model.impl.PMDeletedMessageImpl" name="PMDeletedMessage">
+		<table name="deleted_message" />
+		<attributes />
+	</entity>
+	<entity class="com.dharma.model.impl.PMReadMessageImpl" name="PMReadMessage">
+		<table name="read_message" />
+		<attributes />
+	</entity>
+	<entity class="com.dharma.model.impl.PMBlockedUserImpl" name="PMBlockedUser">
+		<table name="blocked_user" />
+		<attributes />
+	</entity>
+</entity-mappings>

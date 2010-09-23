@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<bean id="com.dharma.service.PMMessageLocalService" class="com.dharma.service.impl.PMMessageLocalServiceImpl" />
+	<bean id="com.dharma.service.PMMessageLocalServiceUtil" class="com.dharma.service.PMMessageLocalServiceUtil">
+		<property name="service" ref="com.dharma.service.PMMessageLocalService" />
+	</bean>
+	<bean id="com.dharma.service.persistence.PMMessagePersistence" class="com.dharma.service.persistence.PMMessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dharma.service.PMDeletedMessageLocalService" class="com.dharma.service.impl.PMDeletedMessageLocalServiceImpl" />
+	<bean id="com.dharma.service.PMDeletedMessageLocalServiceUtil" class="com.dharma.service.PMDeletedMessageLocalServiceUtil">
+		<property name="service" ref="com.dharma.service.PMDeletedMessageLocalService" />
+	</bean>
+	<bean id="com.dharma.service.persistence.PMDeletedMessagePersistence" class="com.dharma.service.persistence.PMDeletedMessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dharma.service.PMReadMessageLocalService" class="com.dharma.service.impl.PMReadMessageLocalServiceImpl" />
+	<bean id="com.dharma.service.PMReadMessageLocalServiceUtil" class="com.dharma.service.PMReadMessageLocalServiceUtil">
+		<property name="service" ref="com.dharma.service.PMReadMessageLocalService" />
+	</bean>
+	<bean id="com.dharma.service.persistence.PMReadMessagePersistence" class="com.dharma.service.persistence.PMReadMessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.dharma.service.PMBlockedUserLocalService" class="com.dharma.service.impl.PMBlockedUserLocalServiceImpl" />
+	<bean id="com.dharma.service.PMBlockedUserLocalServiceUtil" class="com.dharma.service.PMBlockedUserLocalServiceUtil">
+		<property name="service" ref="com.dharma.service.PMBlockedUserLocalService" />
+	</bean>
+	<bean id="com.dharma.service.persistence.PMBlockedUserPersistence" class="com.dharma.service.persistence.PMBlockedUserPersistenceImpl" parent="basePersistence" />
+</beans>
