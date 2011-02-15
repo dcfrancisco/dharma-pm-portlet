@@ -334,7 +334,7 @@ public class PMPortlet extends MVCPortlet {
 			}
 			
 			if (null == subject) {
-				fromEmail = "New personal message available on portal.";
+				subject = "New personal message available on portal.";
 			}
 			
 			
